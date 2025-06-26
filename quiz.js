@@ -101,8 +101,8 @@
     //resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
     hideResults();
     if (missingAnswers.length > 0) {
-      const erreurMsg = "<strong>Certaines réponses manquent. Question(s) : ";
-      msgContainer.innerHTML = erreurMsg.concat(missingAnswers.join(', '), "</strong>");
+      const erreurMsg = "<p><strong>Certaines réponses manquent. Question(s) : ";
+      msgContainer.innerHTML = erreurMsg.concat(missingAnswers.join(', '), "</p></strong>");
       msgContainer.style.display = 'inline-block';
       msgContainer.scrollIntoView();
     }
@@ -116,7 +116,7 @@
         }
       }
       if (maxCount > 0) {
-        msgContainer.innerHTML = `Avec un total de ${maxCount} sur 24 :`;
+        msgContainer.innerHTML = `<p>Avec un total de ${maxCount} sur 24 :</p>`;
         msgContainer.style.display = 'inline-block';
         msgContainer.scrollIntoView();
         for (const [key, value] of Object.entries(symbolCounts)) {
@@ -127,7 +127,7 @@
         }
       }
       else {
-        msgContainer.innerHTML = "<strong>Vous devriez recommencer en prenant un temps de réflexion.</strong>";
+        msgContainer.innerHTML = "<strong><p>Vous devriez recommencer en prenant un temps de réflexion.</p></strong>";
         msgContainer.style.display = 'inline-block';
         msgContainer.scrollIntoView();
       }
@@ -368,6 +368,13 @@
     }
   ];
 
+  // randomize questions order
+  myQuestions.sort(
+    function() { 
+      return 0.5 - Math.random();
+    }
+  );
+
   // Kick things off
   buildQuiz();
 
@@ -387,3 +394,4 @@
   //previousButton.addEventListener("touchstart", showPreviousSlide);
   //nextButton.addEventListener("touchstart", showNextSlide);
 })();
+
